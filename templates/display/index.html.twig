@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DisplayController!{% endblock %}
+{% block title %}Weather{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +9,40 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Weather</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/aleksandrsmacbook/weather/weather_front/src/Controller/DisplayController.php'|file_link(0) }}">src/Controller/DisplayController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/aleksandrsmacbook/weather/weather_front/templates/display/index.html.twig'|file_link(0) }}">templates/display/index.html.twig</a></code></li>
-    </ul>
+    {% if result %}
+        {{ result }}
+    {% endif %}
+
+    {% if token %}
+        <form action="/display" method="post">
+            <input type="hidden" name="city" value="Riga">
+            <input type="hidden" name="type" value="today">
+            <input type="hidden" name="token" value="{{ token }}">
+            <input type="submit" value="Riga today">
+        </form>
+
+        <form action="/display" method="post">
+            <input type="hidden" name="city" value="Riga">
+            <input type="hidden" name="type" value="average">
+            <input type="hidden" name="token" value="{{ token }}">
+            <input type="submit" value="Riga 7 day average">
+        </form>
+
+        <form action="/display" method="post">
+            <input type="hidden" name="city" value="New York">
+            <input type="hidden" name="type" value="today">
+            <input type="hidden" name="token" value="{{ token }}">
+            <input type="submit" value="New York today">
+        </form>
+
+        <form action="/display" method="post">
+            <input type="hidden" name="city" value="New York">
+            <input type="hidden" name="type" value="average">
+            <input type="hidden" name="token" value="{{ token }}">
+            <input type="submit" value="New York 7 day average">
+        </form>
+    {% endif %}
 </div>
 {% endblock %}
